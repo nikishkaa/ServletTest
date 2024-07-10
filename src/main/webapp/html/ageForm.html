@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Login Form</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="main">
+    <h1>GeeksforGeeks</h1>
+    <h3>Enter your login credentialss</h3>
+    <!--    POST - Security to send creditionals to the Server(back-end)-->
+    <form action="form" method="post">
+        <label for="first">
+            Username:
+        </label>
+        <input type="text"
+               id="first"
+               name="first"
+               placeholder="Enter your Username">
+
+
+        <label>age</label>
+        <input type="number"
+               id="age"
+               name="age"
+               placeholder="age"
+               max="100"
+               min="0"
+               required>
+
+        <div class="wrap">
+            <button type="submit">Submit
+            </button>
+        </div>
+    </form>
+    <p>Not registered?
+        <a href="#"
+           style="text-decoration: none;">
+            Create an account
+        </a>
+    </p>
+</div>
+</body>
+
+</html>
