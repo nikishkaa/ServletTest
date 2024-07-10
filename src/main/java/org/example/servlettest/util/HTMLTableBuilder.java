@@ -1,8 +1,6 @@
 package org.example.servlettest.util;
 
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 /**
  * Template which will generate specified HTML table. Using StringBuilder.
@@ -91,7 +89,7 @@ public class HTMLTableBuilder {
     public void addRowValues(String... values) {
         rowsCounter++;
         if (values.length != columns) {
-            System.out.println("Error column length");
+            System.out.println("Error column lenth");
         } else {
             int lastIndex = table.lastIndexOf(ROW_END);
             if (lastIndex > 0) {
@@ -109,9 +107,41 @@ public class HTMLTableBuilder {
         }
     }
 
+    /**
+     * RQMT#607 - SEAT - batch job dealing with BlueGroup expiration dates on
+     * existing BlueGroups
+     *
+     * @param map - TreeMap - storing results for each Prolongation result
+     * @param codes - CWA API Codes scope
+     */
 
+    /**
+     * Build HTML table
+     *
+     * @return
+     */
     public String build() {
         return table.toString();
     }
 
+    public static void main(String[] args) {
+//        HTMLTableBuilder htmlTableBuilder = new HTMLTableBuilder("Currencies", true, 3, 3, 10, 10, 10);
+//        htmlTableBuilder.addTableHeader("UUID", "Name", "Last Name");
+//        htmlTableBuilder.addRowValues(UUID.randomUUID().toString(), "John", "Doe");
+//        htmlTableBuilder.addRowValues(UUID.randomUUID().toString(), "Mike", "Ivanov");
+//        htmlTableBuilder.addRowValues(UUID.randomUUID().toString(), "John", "Doe");
+//        htmlTableBuilder.addRowValues(UUID.randomUUID().toString(), "John", "Doe");
+
+//        System.out.println(htmlTableBuilder);
+//
+//        String htmlTable = htmlTableBuilder.build();
+
+        HTMLTableBuilder currencies = new HTMLTableBuilder("Currencies", true, 3, 3, 10, 10, 10);
+        currencies.addTableHeader("#", "ID", "Rate");
+        currencies.addRowValues("1", "USD", XMLCurrencyParser.getCurrency("840"));
+        currencies.addRowValues("1", "USD", XMLCurrencyParser.getCurrency("840"));
+        currencies.addRowValues("1", "USD", XMLCurrencyParser.getCurrency("840"));
+
+        System.out.println(currencies.build());
+    }
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML Login Form</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="main">
+    <h1>NBRB Currencies</h1>
+    <h3>Choose currencies</h3>
+    <form action="curr" id="currencies" method="get">
+
+        <label for="currenciesselect">Choose a car:</label>
+        <select id="currenciesselect" name="code" form="currencies" required>
+            <option value="840">USD</option>
+            <option value="978">EUR</option>
+            <option value="643">RUB</option>
+        </select>
+
+
+        <label for="amount">
+            Amount:
+        </label>
+        <input type="text"
+               id="amount"
+               name="amount"
+               placeholder="Enter your Username" required>
+
+
+        <div class="wrap">
+            <button type="submit">Calculate</button>
+        </div>
+    </form>
+
+</div>
+</body>
+
+</html>

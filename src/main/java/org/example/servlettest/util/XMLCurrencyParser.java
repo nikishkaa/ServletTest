@@ -1,20 +1,21 @@
-package by.itstep;
+package org.example.servlettest.util;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class XMLCurrencyParser
-{
-  public XMLCurrencyParser() {}
-  
-  private static String CURRENCY_URL = "http://www.nbrb.by/Services/XmlExRates.aspx";
-  
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+public class XMLCurrencyParser {
+  public XMLCurrencyParser() {
+  }
+
+  private static String CURRENCY_URL = "https://www.nbrb.by/Services/XmlExRates.aspx";
+
   private static Document loadDocument(String url) {
     Document doc = null;
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -35,33 +36,22 @@ public class XMLCurrencyParser
     }
     return doc;
   }
-  
 
 
-
-
-
-
-
-
-
-
-
-  public static String getCurrency(String currencyCode)
-  {
+  public static String getCurrency(String currencyCode) {
     boolean isCurrencyCodeNext = false;
     Document doc = loadDocument(CURRENCY_URL);
-    
+
     if (doc != null) {
       NodeList nodes = doc.getFirstChild().getChildNodes();
-      
+
 
       for (int i = 0; i < nodes.getLength(); i++) {
         Node parent = nodes.item(i);
-        
+
         if (parent.getNodeType() == 1) {
           NodeList childs = parent.getChildNodes();
-          
+
           for (int ii = 0; ii < childs.getLength(); ii++) {
             Node child = childs.item(ii);
             if (child.hasChildNodes()) {
@@ -69,7 +59,7 @@ public class XMLCurrencyParser
                 isCurrencyCodeNext = false;
                 return child.getFirstChild().getTextContent();
               }
-              
+
               if (child.getFirstChild().getTextContent().trim().equalsIgnoreCase(currencyCode)) {
                 isCurrencyCodeNext = true;
               }
@@ -79,5 +69,10 @@ public class XMLCurrencyParser
       }
     }
     return "0.0";
+  }
+
+  public static void main(String[] args) {
+    String val = String.valueOf(new XMLCurrencyParser().getCurrency("USD"));
+    System.out.println(val);
   }
 }
