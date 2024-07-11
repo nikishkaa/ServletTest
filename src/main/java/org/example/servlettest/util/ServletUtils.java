@@ -14,10 +14,16 @@ public class ServletUtils {
         request.getRequestDispatcher(("/html/" + path + ".html")).forward(request, response);
     }
 
+    public static void forwardJSP(final String path, final HttpServletRequest request,
+                                  final HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(new Date() + " forwarding to jsp: " + path);
+        request.getRequestDispatcher((path + ".jsp")).forward(request, response);
+    }
+
     public static void include(final String path, final String msg, final HttpServletRequest request,
                                final HttpServletResponse response) throws ServletException, IOException {
-      String charSet = "UTF-8";
-      response.setHeader("Content-type", "text/html;charset=" + charSet);
+        String charSet = "UTF-8";
+        response.setHeader("Content-type", "text/html;charset=" + charSet);
         System.out.println(new Date() + " Include for: " + path);
         response.getWriter().println("<h3>" + msg + "<>");
         RequestDispatcher rd = request.getRequestDispatcher(path);
