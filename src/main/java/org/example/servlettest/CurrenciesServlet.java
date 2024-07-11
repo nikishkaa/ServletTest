@@ -40,7 +40,6 @@ public class CurrenciesServlet extends HttpServlet {
         }
         double result = amount * rate;
 
-
         // 1.4 Make response
         include(path, "Result Amount: " + result, request, response);
         return;
