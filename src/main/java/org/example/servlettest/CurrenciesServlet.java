@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import static org.example.servlettest.util.ServletUtils.*;
 
+
 @WebServlet(name = "CoursesServlet", value = "/curr")
 
 public class CurrenciesServlet extends HttpServlet {
