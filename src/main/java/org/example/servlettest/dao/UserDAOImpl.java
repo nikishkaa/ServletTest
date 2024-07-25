@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDaoImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO {
     @Override
     public User findUserByEmail(String email) {
         PreparedStatement pstmt = null;
@@ -45,13 +45,11 @@ public class UserDaoImpl implements UserDAO {
             pstmt = conn.prepareStatement(String.format("INSERT INTO users(name, email, password) VALUES ('%s', '%s', '%s')", user.getName(), user.getEmail(), user.getPassword()));
 
             return pstmt.executeUpdate() == 1;
-        } catch (SQLException e) {
+         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Bad connection", e);
         } finally {
             DBUtils.close(null, null, pstmt, null);
         }
-
-
     }
 }

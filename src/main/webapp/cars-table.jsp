@@ -8,6 +8,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c:" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Cars Table</title>
@@ -19,46 +22,31 @@
     int counter = 0;
 %>
 
-<%--Scriptlet--%>
-<%
-    // Java is here
-    counter++;
-    Object cars1 = request.getAttribute("cars");
-    System.out.println(cars1);
+<c:set var="counter" scope="session" value="${0}"/>
 
-    List<String> cars = (List<String>) cars1;
+<h4>Counter:
+    <c:out value="${counter = counter + 1}"/>
+</h4>
 
-    System.out.println("Hello from jsp Scriptlet");
-//    ctrl + alt + v
-    int x = ((int) (Math.random() * 10)) + 1;
-    response.getWriter().println(x);
-%>
-<%--HTML is here--%>
-<h1>PAGE COUNTER: <%=counter%>
-</h1>
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>PRICE</th>
-    </tr>
-    <%
-        for (String car : cars) {
-    %>
-    <tr>
-        <td> <!-- JSP Expression -->
-            <%=car%>
-        </td>
-        <td> <!-- JSP Expression -->
-            <%=((int) (Math.random() * 2000) + 2000)%>
-        </td>
-    </tr>
-    <%
-        }
+<c:if test="${cars == null}">
+    <h3>No cars to view</h3>
+</c:if>
 
-
-    %>
-
-</table>
+<c:if test="${cars != null}">
+    <%--    Build table--%>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>PRICE</th>
+        </tr>
+        <c:forEach var="car" items="${cars}"/>
+        <tr>
+            <td>
+                <c:out value="${2000+ 2000}"/>
+            </td>
+        </tr>
+    </table>
+</c:if>
 
 
 </body>

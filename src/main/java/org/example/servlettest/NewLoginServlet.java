@@ -1,7 +1,6 @@
 package org.example.servlettest;
 
-import com.mysql.cj.Session;
-import org.example.servlettest.dao.UserDaoImpl;
+import org.example.servlettest.dao.UserDAOImpl;
 import org.example.servlettest.model.User;
 import org.example.servlettest.util.ServletUtils;
 
@@ -13,7 +12,7 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "newLogin", value = "/login")
 public class NewLoginServlet extends HttpServlet {
-    private UserDaoImpl userDAO = new UserDaoImpl();
+    private UserDAOImpl userDAO = new UserDAOImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

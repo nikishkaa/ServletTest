@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class CarServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        request.setAttribute("cars", Arrays.asList("BMW", "HONDA", "OPE:"));
+        request.setAttribute("cars", Arrays.asList("BMW", "HONDA", "OPEL"));
         ServletUtils.forwardJSP("cars-table", request, response);
     }
 }
