@@ -7,5 +7,5 @@ public interface UserDAO {
 
     boolean createUser(User user);
 
-
+    boolean activate(User user);
 }

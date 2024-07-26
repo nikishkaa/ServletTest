@@ -75,6 +75,9 @@
                             <a class="navbar-brand brand_mobile" href="index.html">
                                 <img src="images/logo.png" alt=""/>
                             </a>
+
+
+                            <h2>${msg}</h2>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                     aria-expanded="false" aria-label="Toggle navigation">

@@ -3,7 +3,7 @@ package org.example.servlettest.util;
 import java.sql.*;
 
 public class DBUtils {
-    public static final String URL = "jdbc:mysql://localhost:3306/dealer";
+    public static final String URL = "jdbc:mysql://localhost:3308/j1023_db";
     public static final String USER = "root";
     public static final String PASSWORD = "";
 

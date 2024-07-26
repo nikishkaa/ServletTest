@@ -1,11 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
   User: Nikita
-  Date: 16.07.2024
-  Time: 20:12
+  Date: 25.07.2024
+  Time: 12:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,32 +83,42 @@
 </head>
 <body>
 
-<h2>Login Form</h2>
+<h2>Registration</h2>
+<h2 style="color: #c82333">${msg}</h2>
 
-<h2>${msg}</h2>>
+<c:if test="${cause != null}">
+    <details>
+        <summary>Error Details</summary>
+        <c:out value="${cause}"/>
+        <details>
+            <summary>stack-trace</summary>
+            <c:out value="${stack-trace}"/>
+        </details>
+    </details>
+</c:if>
 
-<form action="login" method="post">
-    <div class="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
-    </div>
+<form action="activate" method="post">
 
     <div class="container">
-        <label for="email"><b>Username</b></label>
-        <input id="email" type="email" placeholder="Enter email" name="email" required>
+        <label for='email'><b>Email</b></label>
+        <br>
+        <input id="email" type="email" placeholder="Enter your email" name="email" required>
+        <br>
 
-        <label for="psw"><b>Password</b></label>
-        <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
+        <label for='psw'><b>Password</b></label>
+        <input id="psw" type="password" placeholder="Enter your password" name="psw" required>
 
-        <button type="submit">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+
+        <button type="submit">Send Activating</button>
+        <!-- <label>
+             <input type="checkbox" checked="checked" name="remember"> Remember me
+         </label> -->
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
+    <!--<div class="container" style="background-color:#f1f1f1">
         <button type="button" class="cancelbtn">Cancel</button>
         <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
+    </div> -->
 </form>
 
 </body>
