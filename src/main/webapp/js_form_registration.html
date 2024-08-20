@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reg form</title>
+</head>
+<body>
+<form name="reg_form" action="https://onliner.by" onsubmit="return submitForms();">
+    <h2>REGISTRATION:</h2>
+    <h2>EMAIL:</h2>
+    <input type="text" name="email" required>
+    <h2>PASSWORD:</h2>
+    <input type="password" name="password" required>
+    <h2>REPEAT PASSWORD:</h2>
+    <input type="password" name="password_repeat" required>
+
+    <br>
+    <input type="submit" name="submitName">
+</form>
+
+<script>
+    function submitForms() {
+        if (validForm()) {
+            document.reg_form.submitName.disabled = true;
+            document.reg_form.submit();
+        } else {
+            return false;
+        }
+
+    }
+
+    function validForm() {
+        let first_password = document.forms['reg_form']['password'].value;
+        let second_password = document.forms['reg_form']['password_repeat'].value;
+        // if (!first_password.equals(second_password) ) {
+        if (first_password != second_password) {
+
+            console.log("PASSWORD NOT EQUALS!");
+            alert("PASSWORD NOT EQUALS!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
