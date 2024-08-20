@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
     @Override
@@ -68,4 +70,36 @@ public class UserDAOImpl implements UserDAO {
             DBUtils.close(null, null, pstmt, null);
         }
     }
+
+    @Override
+    public Set<User> findAll() {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        Set<User> users = new HashSet<>();
+
+        try (Connection conn = DBUtils.getConnection()) {
+            pstmt = conn.prepareStatement(String.format("SELECT * FROM users"));
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setName(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setPassword(rs.getString(4));
+                user.setActive(rs.getString(5).equals("Y"));
+                user.setCreatedTs(rs.getTimestamp(6));
+                user.setUpdatedTs(rs.getTimestamp(7));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("FindAll Exception", e);
+        } finally {
+            DBUtils.close(null, null, pstmt, rs);
+        }
+
+
+        return users;
+    }
 }
+

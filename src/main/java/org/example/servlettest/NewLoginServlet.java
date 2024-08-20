@@ -30,8 +30,6 @@ public class NewLoginServlet extends HttpServlet {
         if ((user = userDAO.findUserByEmail(email)) != null) {
             if (user.getPassword().equals(psw)) {
                 if (!user.isActive()) {
-
-
                     request.setAttribute("msg", "Not Activate Email");
                     ServletUtils.forwardJSP("login", request, response);
 
