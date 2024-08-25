@@ -1,11 +1,14 @@
 package org.example.servlettest.util;
 
+import org.example.servlettest.model.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 
 public class ServletUtils {
     public static void forward(final String path, final HttpServletRequest request,
@@ -38,5 +41,15 @@ public class ServletUtils {
 
     public static long getLongParameter(final HttpServletRequest request, final String paramName) {
         return Long.parseLong(request.getParameter(paramName));
+    }
+
+    public static User getUserInSession(final HttpServletRequest request) {
+        Optional<User> userOpt = Optional.ofNullable((User) request.getSession().getAttribute("user"));
+
+        if (userOpt.isPresent()) {
+            return (User) userOpt.get();
+        }
+
+        return null;
     }
 }

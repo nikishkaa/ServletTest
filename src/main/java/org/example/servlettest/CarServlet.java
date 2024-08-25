@@ -1,5 +1,6 @@
 package org.example.servlettest;
 
+import org.example.servlettest.model.User;
 import org.example.servlettest.util.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,22 @@ import java.util.Arrays;
 public class CarServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        request.setAttribute("cars", Arrays.asList("BMW", "HONDA", "OPEL"));
-        ServletUtils.forwardJSP("cars-table", request, response);
+
+        //1st iin Session + 2nd has role Admin
+
+
+        User user = ServletUtils.getUserInSession(request);
+
+        if (user == null) {
+            request.setAttribute("msg", "You should login first");
+            return;
+        } else if (user.getRole().getName().equals("Admin")) {
+            request.setAttribute("msg", "You should have Admin role");
+            return;
+        } else {
+            request.setAttribute("cars", Arrays.asList("BMW", "HONDA", "OPEL"));
+            ServletUtils.forwardJSP("cars-table", request, response);
+            return;
+        }
     }
 }
