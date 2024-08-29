@@ -39,7 +39,7 @@ public class NewLoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setMaxInactiveInterval(5);
 
-//                Store user object within HTTP Session
+                //Store user object within HTTP Session
                 session.setAttribute("user", user);
 
                 ServletUtils.forwardJSP("blog", request, response);
