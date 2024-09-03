@@ -14,8 +14,8 @@ public class HibernateMain {
 
     public static void main(String[] args) {
 
-        Employee empl = dao.getByKey(19);
-        System.out.println(empl);
+//        Employee empl = dao.getByKey(19);
+//        System.out.println(empl);
 
 //
 //        Transaction txn = null;
