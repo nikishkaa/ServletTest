@@ -4,6 +4,7 @@ import org.example.servlettest.entity.Cart;
 import org.example.servlettest.entity.Employee;
 import org.example.servlettest.entity.Item;
 import org.example.servlettest.entity.Student;
+import org.example.servlettest.model.Role;
 import org.example.servlettest.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -39,6 +40,8 @@ public class HibernateAnnotationUtil {
                 .addAnnotatedClass(Cart.class)
                 .addAnnotatedClass(Item.class)
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Role.class)
 // Сюда включить классы!
                 .buildMetadata();
 
