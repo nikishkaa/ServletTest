@@ -1,5 +1,6 @@
 package org.example.servlettest.util;
 
+import org.example.servlettest.NewLoginServlet;
 import org.example.servlettest.entity.Cart;
 import org.example.servlettest.entity.Employee;
 import org.example.servlettest.entity.Item;
@@ -42,6 +43,7 @@ public class HibernateAnnotationUtil {
                 .addAnnotatedClass(Student.class)
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Role.class)
+
 // Сюда включить классы!
                 .buildMetadata();
 

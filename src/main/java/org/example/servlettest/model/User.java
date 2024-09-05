@@ -1,41 +1,46 @@
 package org.example.servlettest.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
-@Entity
+@Getter
+@Setter
 @NoArgsConstructor
-@Table(name = "USER")
-@Data
+@Entity(name = "User")
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-
-    @Column(name = "name")
+    @Column(name = "name", length = 128, nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 128, nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 128, nullable = false)
     private String password;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @Column(name = "is_active")
-    private boolean isActive; // Not active by default
+    @Column(name = "is_active", length = 1)
+    private boolean isActive;
 
     @Column(name = "created_ts")
-    public Timestamp createdTs;
+    @CreationTimestamp
+    private Timestamp createdTs;
 
     @Column(name = "updated_ts")
-    public Timestamp updatedTs;
+    private Timestamp updatedTs;
+
 }

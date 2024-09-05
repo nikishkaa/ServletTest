@@ -3,6 +3,8 @@ package org.example.servlettest;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.example.servlettest.dao.UserDAOImpl;
+import org.example.servlettest.dao.UsersDao;
+import org.example.servlettest.dao.impl.RolesDao;
 import org.example.servlettest.model.User;
 import org.example.servlettest.util.EncryptDecryptUtils;
 import org.example.servlettest.util.MailUtils;
@@ -37,10 +39,15 @@ public class RegistrationServlet extends HttpServlet {
             String encryptedPassword = EncryptDecryptUtils.encrypt(password);
             user.setPassword(encryptedPassword);
 
-            UserDAOImpl userDAO = new UserDAOImpl();
-
+            UsersDao userDAO = new UsersDao();
+            RolesDao rolesDao = new RolesDao();
             try {
-                boolean isCreated = userDAO.createUser(user);
+                // set default role
+//                rolesDao
+
+
+                userDAO.create(user);
+                boolean isCreated = false; // TODO
                 if (isCreated) {
                     // just created - not active!
                     // send msg with instructions

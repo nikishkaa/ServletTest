@@ -9,13 +9,8 @@ import java.util.List;
 
 public class StudentHibernateTest {
     public static void main(String[] args) {
-        JpaConfiguration configuration = new JpaConfiguration();
-        configuration.setUserName("root");
-        configuration.setPassword("");
-        configuration.setDriver("com.mysql.jdbc.Driver");
-        configuration.setUrl("jdbc:mysql://localhost:3308/j1023_db");
-        configuration.setPersistentUnit(Student.class.getName());
-        JPAService.initialize(configuration);
+
+        JPAService.initialize();
 
 
 //        StudentDao studentDao = new StudentDao();

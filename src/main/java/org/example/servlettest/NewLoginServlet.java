@@ -1,6 +1,8 @@
 package org.example.servlettest;
 
 import org.example.servlettest.dao.UserDAOImpl;
+import org.example.servlettest.dao.UsersDao;
+import org.example.servlettest.db.JPAService;
 import org.example.servlettest.model.User;
 import org.example.servlettest.util.ServletUtils;
 
@@ -12,7 +14,7 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "newLogin", value = "/login")
 public class NewLoginServlet extends HttpServlet {
-    private UserDAOImpl userDAO = new UserDAOImpl();
+    private UsersDao userDAO = new UsersDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,12 +39,12 @@ public class NewLoginServlet extends HttpServlet {
 
 
                 HttpSession session = request.getSession();
-                session.setMaxInactiveInterval(5);
+                session.setMaxInactiveInterval(90);
 
                 //Store user object within HTTP Session
                 session.setAttribute("user", user);
 
-                ServletUtils.forwardJSP("blog", request, response);
+                    ServletUtils.forwardJSP("blog", request, response);
                 return;
             } else {
                 response.getWriter().println("Invalid username or password");

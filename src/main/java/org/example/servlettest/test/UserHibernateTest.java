@@ -16,7 +16,7 @@ public class UserHibernateTest {
         configuration.setDriver("com.mysql.jdbc.Driver");
         configuration.setUrl("jdbc:mysql://localhost:3308/j1023_db");
         configuration.setPersistentUnit(User.class.getName());
-        JPAService.initialize(configuration);
+        JPAService.initialize();
 
 
         UserDao userDao = new UserDao();

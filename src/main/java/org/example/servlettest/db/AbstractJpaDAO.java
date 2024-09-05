@@ -1,6 +1,7 @@
 package org.example.servlettest.db;
 
 import jakarta.persistence.EntityManager;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -28,6 +29,15 @@ public abstract class AbstractJpaDAO<PK extends Serializable, T> implements Auto
 
     public List<T> findAll(String condition) {
         return jpaService.findAll(clazz, condition);
+    }
+
+    public T findFirst(String condition) {
+        List<T> result = jpaService.findAll(clazz, condition);
+        if (CollectionUtils.isEmpty(result)) {
+            return null;
+        }
+
+        return result.get(0);
     }
 
     public void createOrUpdate(T entity) {

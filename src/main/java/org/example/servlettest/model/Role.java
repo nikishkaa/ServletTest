@@ -6,25 +6,31 @@ import org.example.servlettest.entity.Item;
 
 import java.util.Set;
 
-@Entity
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "ROLE")
+@Entity
 @Data
+@Table(name = "roles")
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String description;
 
-
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "role")
     private Set<User> users;
+
+
+    public Role(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
 }
